@@ -2,8 +2,9 @@ package jm.task.core.jdbc.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
+
 @Entity
-@Table
+@Table(name = "users")
 public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

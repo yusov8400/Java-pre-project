@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserDaoJDBCImpl implements UserDao {
-    Util util = new Util();
+    private Util util = new Util();
 
     public UserDaoJDBCImpl() {
 
@@ -60,7 +60,7 @@ public class UserDaoJDBCImpl implements UserDao {
         try (Connection connection = util.getConnection()) {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery("SELECT * FROM  users");
-            while(resultSet.next()){
+            while (resultSet.next()) {
                 User user = new User();
                 user.setId(resultSet.getLong("id"));
                 user.setName(resultSet.getString("name"));
@@ -71,10 +71,10 @@ public class UserDaoJDBCImpl implements UserDao {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return userList;
+        return null;
     }
 
-        public void cleanUsersTable() {
+    public void cleanUsersTable() {
         try (Connection connection = util.getConnection()) {
             Statement statement = connection.createStatement();
             statement.executeUpdate("TRUNCATE TABLE  users");
@@ -83,3 +83,4 @@ public class UserDaoJDBCImpl implements UserDao {
         }
     }
 }
+
